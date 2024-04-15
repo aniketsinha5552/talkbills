@@ -16,14 +16,14 @@ const Navbar = () => {
     router.push("/login")
   }
   return (
-    <div className='bg-slate-300 flex-col justify-between'>
+    <div className='text-white bg-gray-800 flex flex-row justify-between align-middle'>
     <span onClick={()=>router.push('/')} className='text-3xl text-center font-semibold m-3 hover:cursor-pointer'>Talkbills</span>
 
     {status=="authenticated" && 
-    <button className='bg-blue-300 rounded-md p-2 m-3' onClick={()=>signOut()}>logout</button>
+    <button className='bg-blue-500 rounded-md p-2 m-3' onClick={()=>signOut()}>Logout</button>
   }
     {status == "unauthenticated" &&
-    <button className='bg-blue-300 rounded-md p-2 m-3' onClick={()=>router.push('/login')}>Login</button>}
+    <button className='bg-blue-500 rounded-md p-2 m-3' onClick={()=>router.push('/login')}>Login</button>}
     </div>
   )
 }
