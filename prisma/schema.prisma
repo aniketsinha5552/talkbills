@@ -13,26 +13,67 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id String  @id @default(cuid()) @map("_id")
-//   username String
-//   password String
-//   email String?
-// }
+model Account {
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  expenses      Expense[]
+}
+
+model VerificationToken {
+  identifier String   @id @map("_id")
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
 
 model Category {
   id String  @id @default(cuid()) @map("_id")
   name          String
-  // expenses Expense[]
+  expenses Expense[]
 }
 
-// model Expense {
-//   id String  @id @default(cuid()) @map("_id")
-//   amount Int @default(0)
-//   item String
-//   user_id String
-//   category_id String
-//   category Category @relation(fields: [category_id],references: [id])
-//   created_at  DateTime @default(now())
-//   updated_at DateTime @updatedAt
-// }
+model Expense {
+  id String  @id @default(cuid()) @map("_id")
+  amount Int @default(0)
+  item String
+  user_id String
+  user User @relation(fields: [user_id],references: [id])
+  category_id String
+  category Category @relation(fields: [category_id],references: [id])
+  created_at  DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
