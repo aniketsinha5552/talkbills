@@ -9,12 +9,12 @@ const Navbar = () => {
 
   const {data,status}= useSession()
   console.log(data,status)
-  if(status=="authenticated"){
-      router.push("/")
-  }
-  if(status=="unauthenticated"){
-    router.push("/login")
-  }
+  // if(status=="authenticated"){
+  //     router.push("/")
+  // }
+  // if(status=="unauthenticated"){
+  //   router.push("/login")
+  // }
   return (
     <div className='text-white bg-gray-800 flex flex-row justify-between align-middle'>
     <span onClick={()=>router.push('/')} className='text-3xl text-center font-semibold m-3 hover:cursor-pointer'>Talkbills</span>
