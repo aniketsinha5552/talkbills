@@ -11,7 +11,7 @@ const PieChart: React.FC = () => {
 
   return (
     <div className="donut">
-      <Chart options={options} series={series} type="donut" width="380" />
+      <Chart options={options} series={series} type="donut" width="500" />
     </div>
   );
 };

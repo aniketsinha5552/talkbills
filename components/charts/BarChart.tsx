@@ -27,7 +27,7 @@ const BarChart: React.FC = () => {
             options={options}
             series={series}
             type="bar"
-            width="500"
+            width="600"
           />
         </div>
       </div>
