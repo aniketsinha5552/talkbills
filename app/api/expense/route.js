@@ -32,8 +32,25 @@ export const GET = async(req,res)=>{
 
 export const POST = async(req)=>{
      const body = await req.json()
-     return new NextResponse(JSON.stringify(body))
-     const expense = await prisma.expense.category({
-        data: {...body, user_id:""}
-     })
+
+     try{
+      const user = await prisma.User.findMany({
+        where: {
+          email: body.email
+        }
+      })
+      const expense = await prisma.Expense.create({
+        data: {
+          amount: Number(body.amount),
+          item: body.item,
+          category_id: body.category_id,
+          user_id: user[0].id
+        }
+      })
+      return new NextResponse(JSON.stringify(expense))
+      
+     }catch(e){
+      return new NextResponse(JSON.stringify(e.message))
+     }
+ 
 }

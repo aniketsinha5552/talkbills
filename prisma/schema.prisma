@@ -74,6 +74,6 @@ model Expense {
   user User @relation(fields: [user_id],references: [id])
   category_id String
   category Category @relation(fields: [category_id],references: [id])
-  created_at  DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at  DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 }
