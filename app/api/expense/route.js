@@ -28,3 +28,12 @@ export const GET = async(req,res)=>{
   }
 
 }
+
+
+export const POST = async(req)=>{
+     const body = await req.json()
+     return new NextResponse(JSON.stringify(body))
+     const expense = await prisma.expense.category({
+        data: {...body, user_id:""}
+     })
+}

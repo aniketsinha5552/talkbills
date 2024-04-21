@@ -2,9 +2,10 @@
 import { useRouter } from "next/navigation";
 import BarChart from "./charts/BarChart";
 import PieChart from "./charts/PieChart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@mui/material";
 import Add from "./Add";
+import axios from "axios";
 
 const Dashboard: React.FC = () => {
 

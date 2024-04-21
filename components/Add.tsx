@@ -1,25 +1,47 @@
-import React from 'react'
+"use client"
+import { ICategory } from '@/utils/interfaces/ICategory'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 const Add = () => {
 
-  const add=()=>{
-    alert("added")
+  const [cats,setCats] = useState([])
+
+  const getCategories=async()=>{
+    let res = await axios.get(`/api/category`)
+    console.log(res.data)
+    setCats(res.data)
+  }
+
+  useEffect(()=>{
+     getCategories()
+  },[])
+
+  const {register,handleSubmit} = useForm()
+
+  const add=async(e:any)=>{
+    let res = await axios.post("/api/expense",{
+      item: e.item,
+      amount: e.amount,
+      catergory_id: e.category
+    })
+    console.log(res.data)
+    // alert(JSON.stringify(e))
   }
   return (
     <div className='bg-slate-300 h-[400px] w-[400px] flex flex-col'>
 
-        <div className='flex flex-col p-3 gap-5'>
-        <input className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Item'></input>
-        <input className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Amount'></input>
-        <select className='bg-white rounded-md border-none mb-2 h-12 p-1' >
+        <form onSubmit={handleSubmit(add)} className='flex flex-col p-3 gap-5'>
+        <input {...register("item")} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Item'></input>
+        <input {...register("amount")} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Amount'></input>
+        <select {...register("category")} className='bg-white rounded-md border-none mb-2 h-12 p-1' >
             <option value={""} disabled selected>Category</option>
-            <option value={"household"}>household</option>
-            <option value={"grocery"}>grocery</option>
-            <option value={"travel"}>travel</option>
+            {cats?.map((item:any)=>  <option value={item?.id}>{item?.name}</option>)}
 
         </select>
-        <button className='flex-2 p-1 bg-green-300 rounded-md h-12' onClick={add}>Add</button>
-        </div>
+        <button className='flex-2 p-1 bg-green-300 rounded-md h-12' type="submit">Add</button>
+        </form>
 
     </div>
   )
