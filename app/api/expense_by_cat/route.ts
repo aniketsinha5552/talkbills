@@ -1,14 +1,17 @@
 // import prisma from "@/utils/connect";
+import { getAuthSession } from "@/utils/auth";
+import prisma from "@/utils/prismaClient";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
 
 export const GET = async(req: Request)=>{
-    const { searchParams } = new URL(req.url);
-    const email:any = searchParams.get("email")
+    
+  const session = await getAuthSession()
 
-    let prisma = new PrismaClient()
+  const email:any = session?.user?.email
+
 
     const expenses = await prisma?.expense.groupBy({
         by:['category_id'],

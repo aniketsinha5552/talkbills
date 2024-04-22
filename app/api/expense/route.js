@@ -1,11 +1,13 @@
+import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 
 
 export const GET = async(req,res)=>{
-  const { searchParams } = new URL(req.url);
-  const email = searchParams.get("email");
-  const userId = searchParams.get("user_id")
+
+  const session = await getAuthSession()
+
+  const email = session?.user?.email
 
   try{
     const expenses = await prisma.expense.findMany({

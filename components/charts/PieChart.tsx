@@ -5,16 +5,13 @@ import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 
 const PieChart: React.FC = () => {
-  const { data } = useSession()
-  const email = data?.user?.email
-  console.log(email)
+
   const [exp, setExp] = useState([]);
   const [series, setSeries] = useState([1])
   const [options, setOptions] = useState({})
 
   const getData = async () => {
-    let res = await axios.get(`/api/expense_by_cat?email=${email}`)
-    console.log(res.data)
+    let res = await axios.get(`/api/expense_by_cat`)
     setExp(res.data)
     let ser: any = []
     res.data.forEach((item: any) => {
@@ -47,7 +44,7 @@ const PieChart: React.FC = () => {
 
   useEffect(() => {
     getData()
-  }, [email])
+  }, [])
 
   return (
     <div className="donut">

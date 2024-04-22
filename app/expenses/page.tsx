@@ -4,27 +4,21 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 
 const Expenses = () => {
-  const session = useSession();
 
   const [expenseList, setExpenseList]= useState([])
-  const email = session?.data?.user?.email
 
   const getExpenses=async()=>{
-    if(email){
       try{
-        let res = await axios.get(`http://localhost:3000/api/expense?email=${email}`)
+        let res = await axios.get(`http://localhost:3000/api/expense`)
         console.log(res.data)
         setExpenseList(res.data)
       }catch(e){
         console.log(e)
       }
-
-    }
-
   }
   useEffect(()=>{
     getExpenses()
-  },[email])
+  },[])
 
   return (
     <div>
