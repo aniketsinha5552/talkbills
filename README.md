@@ -1,5 +1,12 @@
 # TalkBills
 
+## Tech
+- NextJs/React
+- MongoDb
+- Prisma
+- Tailwind Css
+- Next Auth
+- React Hook Form
 
 
 ## Class Diagram
