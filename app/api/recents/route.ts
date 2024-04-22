@@ -18,6 +18,9 @@ export const GET=async(req:Request)=>{
         take: 5,
         orderBy: {
           created_at: 'desc'
+        },
+        include:{
+          category: true
         }
       });
 

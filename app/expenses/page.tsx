@@ -1,4 +1,5 @@
 "use client"
+import ExpenseList from '@/components/List';
 import axios from 'axios';
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
@@ -21,15 +22,9 @@ const Expenses = () => {
   },[])
 
   return (
-    <div>
-        <h1>My Expenses</h1>
-        <div>
-          {expenseList && expenseList.map((item:any)=>{
-            return (
-              <div>{item.item} - {item.amount} ({item.category.name})</div>
-            )
-          })}
-        </div>
+    <div className='p-5'>
+        <h1 className='text-center text-gray-700 text-2xl font-medium'>Expense History</h1>
+        <ExpenseList list={expenseList}></ExpenseList>
     </div>
   )
 }
