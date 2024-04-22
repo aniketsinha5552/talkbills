@@ -18,10 +18,13 @@ const Dashboard: React.FC = () => {
 
     return (
         <div className="mt-5">
-            <div className="flex flex-row justify-center gap-5">
+            <div className="">
                 <h1>Dashboard</h1>
-                <button className="bg-slate-300 rounded-md hover:cursor-pointer p-3 text-sm font-bold align-middle" onClick={() => router.push("/expenses")}>All Expenses</button>
-                <button className="bg-green-300 rounded-md hover:cursor-pointer p-3 text-sm font-bold align-middle" onClick={add}>Add Expense</button>
+                <div className="flex flex-row gap-2 justify-center">
+                <button className="bg-slate-300 rounded-md hover:cursor-pointer hover:bg-slate-500 p-3 text-sm font-bold align-middle" onClick={() => router.push("/expenses")}>All Expenses</button>
+                <button className="bg-green-300 rounded-md hover:cursor-pointer hover:bg-green-500 p-3 text-sm font-bold align-middle" onClick={add}>Add Expense</button>
+                </div>
+
 
             </div>
 
@@ -34,7 +37,7 @@ const Dashboard: React.FC = () => {
             <h1>Top</h1>
 
             <Dialog open={open} onClose={()=>setOpen(false)}>
-                <Add></Add>
+                <Add onClose= {()=>setOpen(false)}></Add>
             </Dialog>
 
         </div>

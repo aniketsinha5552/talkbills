@@ -4,14 +4,37 @@ import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
 
-export const GET = (req: Request)=>{
+export const GET = async(req: Request)=>{
     const { searchParams } = new URL(req.url);
-    const cat = searchParams.get("cat")
+    const email:any = searchParams.get("email")
 
     let prisma = new PrismaClient()
 
-    const expenses = prisma?.expense.groupBy({
-        by:['category_id']
+    const expenses = await prisma?.expense.groupBy({
+        by:['category_id'],
+        where:{
+            user:{
+              email : email
+            }
+          },
+        _sum:{
+            amount:true
+        },
     })
-    return new NextResponse(JSON.stringify(expenses))
+
+    let res:any =[]
+
+    await Promise.all(expenses.map(async(expense:any,idx: number)=>{
+        let cat = await prisma?.category.findMany({
+            where:{
+                id: expense.category_id
+            }
+        })
+        res.push({
+            sum : expenses[idx]._sum,
+            category : cat[0].name
+        })
+    }))
+
+    return new NextResponse(JSON.stringify(res))
 }
