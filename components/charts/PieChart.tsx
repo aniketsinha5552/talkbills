@@ -28,16 +28,16 @@ const PieChart: React.FC = () => {
       //     }
       //   }
       // },
-      title: {
-        text: 'Expense by Category',
-        align: 'center',
-        style: {
-          fontSize: '20px',
-          fontWeight: 'bold',
-          fontFamily: 'Helvetica, Arial, sans-serif',
-          color: '#333'
-        },
-      },
+      // title: {
+      //   text: 'Expense by Category',
+      //   align: 'center',
+      //   style: {
+      //     fontSize: '20px',
+      //     fontWeight: 'bold',
+      //     fontFamily: 'Helvetica, Arial, sans-serif',
+      //     color: '#333'
+      //   },
+      // },
       labels: labels
     })
   }
@@ -48,6 +48,7 @@ const PieChart: React.FC = () => {
 
   return (
     <div className="donut">
+       <h1 className="text-lg">Expense by Category</h1>
       <Chart options={options} series={series} type="donut" width="500" />
     </div>
   );
