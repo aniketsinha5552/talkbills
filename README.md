@@ -1,10 +1,10 @@
 # TalkBills
-
+A money management app to keep track of all your expenses
 ## Tech
 - NextJs/React
 - MongoDb
 - Prisma
-- Tailwind Css
+- Tailwind CSS
 - Next Auth
 - React Hook Form
 
