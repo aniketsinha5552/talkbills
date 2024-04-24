@@ -20,7 +20,7 @@ const ExpenseList = ({ list }: any) => {
                                 <tbody>
                                     {list && list.map((item: any) => {
                                         return (
-                                            <tr className="odd:bg-white even:bg-gray-100 hover:bg-gray-100">
+                                            <tr key={item.id} className="odd:bg-white even:bg-gray-100 hover:bg-gray-100">
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-800">{item?.item}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-800">₹ {item?.amount}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-800">{item?.category?.name}</td>
