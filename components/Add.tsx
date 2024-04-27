@@ -44,8 +44,8 @@ const Add = ({onClose}:any) => {
         <form onSubmit={handleSubmit(add)} className='flex flex-col p-3 gap-5'>
         <input {...register("item",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Item'></input>
         <input {...register("amount",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Amount'></input>
-        <select {...register("category",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' >
-            <option value={""} disabled selected>Category</option>
+        <select defaultValue={""} {...register("category",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' >
+            <option value={""} disabled>Category</option>
             {cats?.map((item:any)=>  <option value={item?.id} key={item?.id}>{item?.name}</option>)}
 
         </select>
