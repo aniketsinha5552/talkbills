@@ -24,7 +24,7 @@ const ExpenseList = ({ list }: any) => {
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-800">{item?.item}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-800">₹ {item?.amount}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-800">{item?.category?.name}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-left text-end text-sm font-medium">{item?.created_at.slice(0, 10)}  </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">{item?.created_at.slice(0, 10)}  </td>
                                             </tr>
                                         )
                                     })}
