@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ExpenseList = ({ list }: any) => {
-    console.log(list)
+    // console.log(list)
     return (
         <div className='flex justify-evenly mb-2'>
             <div className="flex flex-col">

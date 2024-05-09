@@ -30,7 +30,7 @@ const Dashboard: React.FC = () => {
     return (
         <div className="mt-1 p-5">
             <div className="">
-                <div>Dashboard</div>
+                <div className="mb-2">Dashboard</div>
                 <div className="flex flex-row gap-2 justify-center">
                 <button className="bg-slate-300 rounded-md hover:cursor-pointer hover:bg-slate-500 p-3 text-sm font-bold align-middle" onClick={() => router.push("/expenses")}>All Expenses</button>
                 <button className="bg-green-300 rounded-md hover:cursor-pointer hover:bg-green-500 p-3 text-sm font-bold align-middle" onClick={add}>Add Expense</button>

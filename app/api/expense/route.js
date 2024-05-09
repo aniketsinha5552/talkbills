@@ -9,6 +9,28 @@ export const GET = async(req,res)=>{
 
   const email = session?.user?.email
 
+  let {searchParams} = new URL(req.url)
+  const category = searchParams.get("category")??null;
+  console.log(category)
+
+  if(category!=null){
+    const expenses = await prisma.expense.findMany({
+      where:{
+        user:{
+          email : email
+        },
+        category: {
+          name: category
+        }
+      },
+      include:{
+        category: true
+      }
+    })
+  
+    return new NextResponse(JSON.stringify(expenses,{status:200}))
+  }
+
   try{
     const expenses = await prisma.expense.findMany({
       where:{

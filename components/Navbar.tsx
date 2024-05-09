@@ -28,8 +28,8 @@ const Navbar = () => {
 
     {status=="authenticated" && 
     <div className='flex flex-row align-middle justify-center m-3 gap-2'>
-     <span className='mt-2'>{data.user?.name} </span>
-     <img className='w-10 h-10 rounded-full' src={data.user?.image??""} alt='user'/>
+     <span className='mt-2'>{data?.user?.name} </span>
+     <img className='w-10 h-10 rounded-full' src={data?.user?.image??""} alt='user'/>
      <button className='bg-blue-500 rounded-md p-2' onClick={logout}>Logout</button>
     </div>
   }

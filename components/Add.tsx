@@ -40,7 +40,7 @@ const Add = ({onClose}:any) => {
   }
   return (
     <div className='bg-slate-300 h-[400px] w-[400px] flex flex-col'>
-
+        <h1 className='text-center text-2xl p-2 m-1'>Add Expense</h1>
         <form onSubmit={handleSubmit(add)} className='flex flex-col p-3 gap-5'>
         <input {...register("item",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Item'></input>
         <input {...register("amount",{ required: true })} className='bg-white rounded-md border-none mb-2 h-12 p-1' placeholder='Amount'></input>

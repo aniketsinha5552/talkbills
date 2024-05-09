@@ -66,7 +66,7 @@ const BarChart: React.FC = () => {
 
   return (
     <div className="app">
-      <h1 className="text-lg">Daily Expense</h1>
+      <h1 className="text-lg">This Week's Expense</h1>
       <div className="row">
         <div className="mixed-chart">
           <Chart options={options} series={series} type="bar" width="600" />
