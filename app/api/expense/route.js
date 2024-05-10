@@ -25,7 +25,7 @@ export const GET = async(req,res)=>{
       },
       include:{
         category: true
-      }
+      },
     })
   
     return new NextResponse(JSON.stringify(expenses,{status:200}))
