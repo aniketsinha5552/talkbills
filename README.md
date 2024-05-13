@@ -10,4 +10,5 @@ A money management app to keep track of all your expenses
 
 
 ## Class Diagram
-![TB ed](https://github.com/aniketsinha5552/talkbills/assets/104712880/cb9ceff3-a86b-457f-85b5-339263c177ac)
+![Talkbills (2)](https://github.com/aniketsinha5552/talkbills/assets/104712880/3a13ce8c-8395-409d-8daa-82d6ad27a913)
+
