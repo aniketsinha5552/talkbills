@@ -13,7 +13,7 @@ const Expenses = () => {
 
   const getCategories=async()=>{
     try{
-      let res = await axios.get(`http://localhost:3000/api/category`)
+      let res = await axios.get(`/api/category`)
       setCategories(res.data)
     }catch(e){
       console.log(e)
@@ -22,7 +22,7 @@ const Expenses = () => {
 
   const getExpenses=async(filter="")=>{
       try{
-        let res = await axios.get(`http://localhost:3000/api/expense`)
+        let res = await axios.get(`/api/expense`)
         console.log(res.data)
 
         if(filter!=""){
