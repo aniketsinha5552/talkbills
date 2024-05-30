@@ -1,7 +1,6 @@
 "use client"
 import { convertDay } from "@/helpers/convertDay";
 import axios from "axios";
-import { title } from "process";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 

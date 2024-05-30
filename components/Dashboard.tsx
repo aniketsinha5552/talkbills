@@ -7,53 +7,66 @@ import { Dialog, List } from "@mui/material";
 import Add from "./Add";
 import axios from "axios";
 import ExpenseList from "./List";
+import Card from "./card";
+import Button from "./button";
 
 const Dashboard: React.FC = () => {
+    const router = useRouter();
+    const [recents, setRecents] = useState();
 
-    const router = useRouter()
+    const getRecents = async () => {
+        let res = await axios.get("/api/recents");
+        console.log(res.data);
+        setRecents(res.data);
+    };
 
-    const [recents,setRecents]= useState()
+    useEffect(() => { getRecents(); }, []);
 
-    const getRecents=async()=>{
-        let res = await axios.get("/api/recents")
-        console.log(res.data)
-        setRecents(res.data)
-    }
-
-    useEffect(()=>{getRecents()},[])
- 
-    const [open,setOpen] = useState(false)
-    const add=()=>{
-        setOpen(true)
-    }
+    const [open, setOpen] = useState(false);
+    const add = () => {
+        setOpen(true);
+    };
 
     return (
-        <div className="mt-1 p-5">
-            <div className="">
-                <div className="mb-2">Dashboard</div>
-                <div className="flex flex-row gap-2 justify-center">
-                <button className="bg-slate-300 rounded-md hover:cursor-pointer hover:bg-slate-500 p-3 text-sm font-bold align-middle" onClick={() => router.push("/expenses")}>All Expenses</button>
-                <button className="bg-green-300 rounded-md hover:cursor-pointer hover:bg-green-500 p-3 text-sm font-bold align-middle" onClick={add}>Add Expense</button>
+        <div className="mt-5 p-6 bg-gray-100 min-h-screen">
+            <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+                <h1 className="text-2xl font-bold text-gray-800 mb-4">Dashboard</h1>
+                <div className="flex flex-row gap-4 justify-center">
+                    <Button type="gray"
+                        onClick={() => router.push("/expenses")}
+                    >
+                        All Expenses
+                    </Button>
+                    <Button
+                        type="success"
+                        onClick={add}
+                    >
+                        Add Expense
+                    </Button>
                 </div>
-
-
             </div>
 
-            <div className="flex flex-row justify-around align-middle mt-10 flex-wrap">
-                <BarChart />
-                <PieChart />
+            <div className="flex flex-wrap justify-around items-center gap-8 mb-8">
+                <Card>Total Expense this month <p className="text-green-600">₹20000</p></Card>
+                <Card>Most spent category <p className="text-green-600">Household</p></Card>
+                <Card>Biggest expense <p className="text-green-600">₹1000 AC</p></Card>
+
+                {/* <BarChart /> */}
+                {/* <PieChart /> */}
+            </div>
+            <div className="p-3 flex justify-end m-4">
+                <Button onClick={()=>router.push("/analysis")} type="primary">View Expense Breakdown</Button>
+                <button></button>
             </div>
 
-            <h1 className="mt-2 mb-1 text-gray-700">Recents</h1>
-            <ExpenseList list={recents}></ExpenseList>
-            {/* <h1>Top</h1> */}
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">Recents</h2>
+            <ExpenseList list={recents} />
 
-            <Dialog open={open} onClose={()=>setOpen(false)}>
-                <Add onClose= {()=>setOpen(false)}></Add>
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <Add onClose={() => setOpen(false)} />
             </Dialog>
-
         </div>
     );
-}
+};
 
 export default Dashboard;
