@@ -1,4 +1,5 @@
 # TalkBills
+https://talkbills.vercel.app/
 A money management app to keep track of all your expenses
 ## Tech
 - NextJs/React
